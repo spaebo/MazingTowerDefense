@@ -5,13 +5,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 /**
  * Created by Yannick on 05.05.2017.
  */
-
 public class GameBoard extends View {
     private int numColumns, numRows;
     private int cellWidth, cellHeight;
@@ -49,6 +49,14 @@ public class GameBoard extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         calculateDimensions();
+    }
+
+    public int getFrameWidth(){
+        return (getWidth() - 20);
+    }
+
+    public int getFrameHeight(){
+        return (getHeight() - 20);
     }
 
     private void calculateDimensions() {
@@ -102,6 +110,7 @@ public class GameBoard extends View {
             int row = (int)(event.getY() / cellHeight);
 
             cellChecked[column][row] = !cellChecked[column][row];
+            Log.i("Position","Column: " + column + " Row: " + row);
             invalidate();
         }
 
